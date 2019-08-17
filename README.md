@@ -12,6 +12,8 @@ Some of the functions of this project are
 - [ ] To-do list saving
 - [ ] To-do list retrieval
 - [ ] To-do list updates (addition/deletion)
+- [ ] To download to-do list
+- [ ] To email to-do list to registered email id
 
 
 ### Frontend 
