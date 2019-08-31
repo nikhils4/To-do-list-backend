@@ -1,0 +1,30 @@
+// requiring modules
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
+// requiring local modules
+const openRoutes = require('./Routes/open');
+
+// env config
+require('dotenv').config();
+const app = express();
+
+// presets
+app.use(cors());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// port declaration
+const port = 3000 || process.env.PORT;
+
+// open routes
+app.use('/', openRoutes);
+
+// middleware (AUTH)
+// const = middleware = require()
+
+// Init the server
+app.listen( port, () => {})

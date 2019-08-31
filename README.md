@@ -12,6 +12,7 @@ Some of the functions of this project are
 - [ ] To-do list saving
 - [ ] To-do list retrieval
 - [ ] To-do list updates (addition/deletion)
+- [ ] List sharing (via email and collaborate)
 
 
 ### Frontend 
