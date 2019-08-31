@@ -18,7 +18,7 @@ Some of the functions of this project are
 
 ### Frontend 
 
-Frontend of the project is maintained by [Shreya Maheshwari](https://github.com/shreya0167).
+Frontend of the project is maintained by [Shreya Maheshwari](https://github.com/mshreya9).
 
 
 ### Environment variables in .env
