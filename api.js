@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // port declaration
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // open routes
 app.use('/', openRoutes);
