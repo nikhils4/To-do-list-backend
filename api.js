@@ -6,6 +6,10 @@ const cookieParser = require('cookie-parser');
 
 // requiring local modules
 const openRoutes = require('./Routes/open');
+const auth = require('./Routes/auth');
+
+//db connect
+require('./helpers/connect.js');
 
 // env config
 require('dotenv').config();
@@ -22,6 +26,8 @@ const port = 3000 || process.env.PORT;
 
 // open routes
 app.use('/', openRoutes);
+app.use('/auth', auth);
+
 
 // middleware (AUTH)
 // const = middleware = require()
