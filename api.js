@@ -4,16 +4,16 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
+// env config
+require('dotenv').config();
+const app = express();
+
 // requiring local modules
 const openRoutes = require('./Routes/open');
 const auth = require('./Routes/auth');
 
 //db connect
 require('./Helpers/connect.js');
-
-// env config
-require('dotenv').config();
-const app = express();
 
 // presets
 app.use(cors());

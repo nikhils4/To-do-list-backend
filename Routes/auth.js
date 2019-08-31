@@ -2,20 +2,14 @@ const router = require("express").Router();
 const jwt = require('jsonwebtoken');
 const User = require('../Models/model').user;
 const helpers = require('../Helpers/helpers.js');
+const mail = require('../Helpers/mailer.js').sendEmail;
 
 router.post('/signup', (request, response) => {
-	console.log("Hellojbj")
-	console.log({
-		NAME: request.body.name,
-		EMAIL: request.body.email,
-		PASSWORD: helpers.hashAndReturn(request.body.password),
-	})
   if (!helpers.emailValidate(request.body.email)) {
     response.status(400).json({
       message: 'There was error validating your email id',
     });
   } else {
-		console.log("sfvgsdfgsdb")
     const profile = new User({
       NAME: request.body.name,
       EMAIL: request.body.email,
@@ -23,23 +17,29 @@ router.post('/signup', (request, response) => {
     });
     profile.save((err) => {
       if (err) {
-				console.log(err)
         if (err.code === 11000) {
-					console.log("HEo")
           response.status(400).json({
             message: 'The given email id is already registered with us',
           });
         } else {
-					console.log("HEllo")
           response.status(500).json({
             message: 'There was some error signing you up :<',
           });
         }
       } else {
-				console.log("llo")
-        response.status(200).json({
-          message: 'You were successfully signed up',
-        });
+				let email = `<p>Hey ${request.body.name},</p><p>Welcome to Keep Notes, enjoy using it.</p><a href="#"><button style="border-radius : 5px; padding : 5px; background : blue; color : white; outline : none">Continue to login</button></a><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Your friends at Keep Notes</p>`
+        if(mail(request.body.email, 'Welcome to Keep Notes', email)){
+					response.status(200).json({
+						message: 'You were successfully signed up',
+						email : true
+					});
+				} else {
+          console.log("Latee")
+					response.status(200).json({
+						message: 'You were successfully signed up',
+						email : false
+					});
+				}
       }
     });
   }
