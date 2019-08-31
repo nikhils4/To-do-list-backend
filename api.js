@@ -9,7 +9,7 @@ const openRoutes = require('./Routes/open');
 const auth = require('./Routes/auth');
 
 //db connect
-require('./helpers/connect.js');
+require('./Helpers/connect.js');
 
 // env config
 require('dotenv').config();
