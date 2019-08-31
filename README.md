@@ -13,11 +13,13 @@ Some of the functions of this project are
 - [ ] To-do list retrieval
 - [ ] To-do list updates (addition/deletion)
 - [ ] List sharing (via email and collaborate)
+- [ ] To download to-do list
+- [ ] To email to-do list to registered email id
 
 
 ### Frontend 
 
-Frontend of the project is maintained by [Shreya Maheshwari](https://github.com/shreya0167).
+Frontend of the project is maintained by [Shreya Maheshwari](https://github.com/mshreya9).
 
 
 ### Environment variables in .env
