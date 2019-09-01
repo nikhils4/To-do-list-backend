@@ -17,3 +17,13 @@ module.exports.passwordAuth = (dbPassword, inputPassword) => {
   }
   return false;
 };
+
+module.exports.createPassword = (length) => {
+  var result           = '';
+  var characters       = '10827380173487817804787180238017284168541678293818240139461364871840123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}

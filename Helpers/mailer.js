@@ -18,12 +18,9 @@ async function sendEmail(to, subject, text) {
 	};
 	
 	await transporter.sendMail(mailOptions, function(error, info){
-		console.log("Early")
 		if (error) {
-			console.log(error)
 			return false
 		} else {
-			console.log(info)
 			return true
 		}
 	});

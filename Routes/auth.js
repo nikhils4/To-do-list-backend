@@ -34,7 +34,6 @@ router.post('/signup', (request, response) => {
 						email : true
 					});
 				} else {
-          console.log("Latee")
 					response.status(200).json({
 						message: 'You were successfully signed up',
 						email : false
@@ -77,5 +76,52 @@ router.post('/login', (request, response) => {
     }
   });
 });
+
+router.post('/forgetpw', (request, response) => {
+  let password = helpers.createPassword(8);
+  User.findOne({
+    EMAIL: request.body.email,
+  }, (err, data) => {
+    console.log(data)
+    if (err) {
+      response.status(500).json({
+        message: 'There was error fetching the details',
+      });
+    } else if (data == null || data === undefined) {
+      response.status(400).json({
+        message: 'No such user exist try signing up first',
+      });
+    } else {
+      let email = `<p>Hey ${data.NAME},</p><p>Thanks for using Keep Notes.</p><p>Your new password is ${password}.</p><p>Login with the new password and update your password.</p><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Your friends at Keep Notes</p>`
+      if(mail(request.body.email, 'Forgot Password', email)){
+        User.findOneAndUpdate({
+          EMAIL: request.body.email,
+        }, {
+          PASSWORD: helpers.hashAndReturn(password),
+        }, (err, data) => {
+          if (err) {
+            response.status(500).json({
+              message: 'There was error fetching the details',
+            });
+          } else if (data == null || data === undefined) {
+            response.status(400).json({
+              message: 'No such user exist try signing up first',
+            });
+          } else {
+            response.status(200).json({
+              message: 'Password reset successful',
+              email : true
+            });
+          }
+        });
+      } else {
+        response.status(400).json({
+          message: 'There was problem resetting your password, try again later',
+          email : false
+        });
+      }
+    }
+  })
+})
 
 module.exports = router;

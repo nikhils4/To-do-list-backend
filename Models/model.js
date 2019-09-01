@@ -15,7 +15,11 @@ const user = new mongoose.Schema({
   PASSWORD: {
     type: String,
     required: [true, 'Password is required'],
-	},
+  },
+  FORGET: {
+    type: Boolean,
+    default: false
+  },
 	// Future prospect - profile pic upload
   IMAGE_URL: {
 		type: String,
