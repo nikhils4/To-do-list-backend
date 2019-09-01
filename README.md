@@ -7,8 +7,9 @@ This is the repository for the backend of the To-do-list.
 
 Some of the functions of this project are 
 
-- [ ] User signup
-- [ ] User login 
+- [X] User signup
+- [X] User login 
+- [X] Forgot Password
 - [ ] To-do list saving
 - [ ] To-do list retrieval
 - [ ] To-do list updates (addition/deletion)
