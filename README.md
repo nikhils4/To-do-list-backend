@@ -11,7 +11,7 @@ Some of the functions of this project are
 - [X] ~~User login~~
 - [X] ~~Forgot Password~~
 - [X] ~~To-do list saving~~
-- [ ] To-do list retrieval
+- [X] ~~To-do list retrieval~~
 - [X] ~~To-do list updates (addition/deletion)~~
 - [ ] List sharing (via email and collaborate)
 - [ ] To download to-do list
