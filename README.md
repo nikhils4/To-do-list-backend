@@ -10,9 +10,9 @@ Some of the functions of this project are
 - [X] ~~User signup~~
 - [X] ~~User login~~
 - [X] ~~Forgot Password~~
-- [ ] To-do list saving
+- [X] ~~To-do list saving~~
 - [ ] To-do list retrieval
-- [ ] To-do list updates (addition/deletion)
+- [X] ~~To-do list updates (addition/deletion)~~
 - [ ] List sharing (via email and collaborate)
 - [ ] To download to-do list
 - [ ] To email to-do list to registered email id
