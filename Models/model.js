@@ -20,6 +20,9 @@ const user = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  LIST: {
+    type: Array,
+  },
 	// Future prospect - profile pic upload
   IMAGE_URL: {
 		type: String,

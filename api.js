@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const middleware = require('./Helpers/middleware');
 
 // env config
 require('dotenv').config();
@@ -11,6 +12,7 @@ const app = express();
 // requiring local modules
 const openRoutes = require('./Routes/open');
 const auth = require('./Routes/auth');
+const secure = require('./Routes/secure');
 
 //db connect
 require('./Helpers/connect.js');
@@ -28,9 +30,11 @@ const port = process.env.PORT || 3000;
 app.use('/', openRoutes);
 app.use('/auth', auth);
 
+// auth check
+app.use(middleware.session);
 
-// middleware (AUTH)
-// const = middleware = require()
+//secure routes
+app.use('/secure', secure);
 
 // Init the server
 app.listen( port, () => {})
