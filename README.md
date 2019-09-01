@@ -7,9 +7,9 @@ This is the repository for the backend of the To-do-list.
 
 Some of the functions of this project are 
 
-- [X] User signup
-- [X] User login 
-- [X] Forgot Password
+- [X] ~~User signup~~
+- [X] ~~User login~~
+- [X] ~~Forgot Password~~
 - [ ] To-do list saving
 - [ ] To-do list retrieval
 - [ ] To-do list updates (addition/deletion)
@@ -25,4 +25,10 @@ Frontend of the project is maintained by [Shreya Maheshwari](https://github.com/
 
 ### Environment variables in .env
 
-Environment variables to be listed here.
+| Variable | Description |
+|:--------:|:------------:|
+| SECRET | JWT secret |
+| SALT | Hash salt |
+| MONGO_URI | MongoDB URI |
+| EMPASSWORD | Email password |
+
