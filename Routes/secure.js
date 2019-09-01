@@ -51,4 +51,28 @@ router.post('/dellist', (request, response) => {
     });
 });
 
+
+router.post('/getlist', (request, response) => {
+  User.findOne({
+    EMAIL: request.decode.email,
+  })
+    .then((result) => {
+      if (result) {
+        response.status(200).json({
+          list: result.LIST,
+        });
+      } else {
+        response.status(400).json({
+          message: 'Some error while fetching details',
+        });
+      }
+    })
+    .catch((err) => {
+			console.log(err)
+      response.status(500).json({
+        message: 'Internal Server Error',
+      });
+    });
+});
+
 module.exports = router;
