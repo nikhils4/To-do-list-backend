@@ -12,7 +12,9 @@ const app = express();
 // requiring local modules
 const openRoutes = require('./Routes/open');
 const auth = require('./Routes/auth');
-const secure = require('./Routes/secure');
+const publiclist = require('./Routes/publiclist');
+const privatelist = require('./Routes/privatelist');
+const share = require('./Routes/share');
 
 //db connect
 require('./Helpers/connect.js');
@@ -34,7 +36,9 @@ app.use('/auth', auth);
 app.use(middleware.session);
 
 //secure routes
-app.use('/secure', secure);
+app.use('/secure', publiclist);
+app.use('/secure', privatelist);
+app.use('/share', share);
 
 // Init the server
 app.listen( port, () => {})
