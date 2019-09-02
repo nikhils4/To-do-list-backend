@@ -16,12 +16,17 @@ const user = new mongoose.Schema({
     type: String,
     required: [true, 'Password is required'],
   },
-  FORGET: {
-    type: Boolean,
-    default: false
-  },
-  LIST: {
+  PUBLIC_LIST: {
     type: Array,
+  },
+  PRIVATE_LIST: {
+    type: Array,
+  },
+  PUBLIC_LIST_USER: {
+    type: Array,
+  },
+  OTHER_USER_LISTS: {
+    type: Array
   },
 	// Future prospect - profile pic upload
   IMAGE_URL: {
