@@ -13,7 +13,8 @@ Some of the functions of this project are
 - [X] ~~To-do list saving~~
 - [X] ~~To-do list retrieval~~
 - [X] ~~To-do list updates (addition/deletion)~~
-- [ ] List sharing (via email and collaborate)
+- [X] ~~Public and Private list~~
+- [X] ~~List sharing (via email and collaborate)~~
 
 
 ### Frontend 
