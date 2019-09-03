@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../Models/model.js').user;
+const mail = require('../Helpers/mailer.js').sendEmail;
 
 // Get the complete public list
 router.post('/public/getlist', (request, response) => {
@@ -91,9 +92,16 @@ router.post('/public/adduser', (request, response) => {
         { $push: { OTHER_USER_LISTS: request.decode.email} },
         { new: true })
         .then((res) => {
-          response.status(200).json({
-            message: 'Public user list was successfully updated - added',
-          });
+          let email = `<p>Hey ${res.NAME},</p><p>Thanks for using Keep Notes.</p><p>${result.NAME} (${result.EMAIL}) has invited you to view and request for change on their public list :-</p><p>Login to view what they have to share with you.</p><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Your friends at Keep Notes</p>`
+          if (mail(request.body.list, 'Public list invite', email)) {
+            response.status(200).json({
+              message: 'Public user list was successfully updated - added',
+            });
+          } else {
+            response.status(500).json({
+              message: 'There was some error while adding user',
+            });
+          }
         })
         .catch((err) => {
           response.status(400).json({
