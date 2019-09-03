@@ -29,4 +29,3 @@ Frontend of the project is maintained by [Shreya Maheshwari](https://github.com/
 | SALT | Hash salt |
 | MONGO_URI | MongoDB URI |
 | EMPASSWORD | Email password |
-

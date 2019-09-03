@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const User = require('../Models/model.js').user;
 const mail = require('../Helpers/mailer.js').sendEmail;
+const middleware = require('../Helpers/middleware').session;
 
 // to get the list users who have shared their to-do-list
-router.post('/user/getuser', (request, response) => {
+router.post('/user/getuser', middleware, (request, response) => {
 	User.findOne({
     EMAIL: request.decode.email,
   })
@@ -27,7 +28,7 @@ router.post('/user/getuser', (request, response) => {
 })
 
 // to get the to-do-list of users who have shared their to-do-list
-router.post('/user/reqlist', (request, response) => {
+router.post('/user/reqlist', middleware, (request, response) => {
 	User.findOne({
 		EMAIL: request.body.email,
   })
@@ -57,7 +58,7 @@ router.post('/user/reqlist', (request, response) => {
 })
 
 // to get the to-do-list of users who have shared their to-do-list
-router.post('/user/reqchange', (request, response) => {
+router.post('/user/reqchange', middleware, (request, response) => {
 	User.findOne({
 		EMAIL: request.body.email,
   })

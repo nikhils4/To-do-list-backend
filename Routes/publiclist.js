@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const User = require('../Models/model.js').user;
 const mail = require('../Helpers/mailer.js').sendEmail;
+const middleware = require('../Helpers/middleware').session;
 
 // Get the complete public list
-router.post('/public/getlist', (request, response) => {
+router.post('/public/getlist', middleware, (request, response) => {
   User.findOne({
     EMAIL: request.decode.email,
   })
@@ -27,7 +28,7 @@ router.post('/public/getlist', (request, response) => {
 })
 
 // Add to public list
-router.post('/public/addlist', (request, response) => {
+router.post('/public/addlist', middleware, (request, response) => {
   User.findOneAndUpdate({
     EMAIL: request.decode.email,
   },
@@ -52,7 +53,7 @@ router.post('/public/addlist', (request, response) => {
 });
 
 // Delete from public list
-router.post('/public/dellist', (request, response) => {
+router.post('/public/dellist', middleware, (request, response) => {
   User.update({
     EMAIL: request.decode.email,
   },
@@ -78,7 +79,7 @@ router.post('/public/dellist', (request, response) => {
 });
 
 // Add user from list of user with whom the list has been shared
-router.post('/public/adduser', (request, response) => {
+router.post('/public/adduser', middleware, (request, response) => {
   User.findOneAndUpdate({
     EMAIL: request.decode.email,
   },
@@ -125,7 +126,7 @@ router.post('/public/adduser', (request, response) => {
 
 
 // Delete user from list of user with whom the list has been shared
-router.post('/public/deluser', (request, response) => {
+router.post('/public/deluser', middleware, (request, response) => {
   User.update({
     EMAIL: request.decode.email,
   },
@@ -164,7 +165,7 @@ router.post('/public/deluser', (request, response) => {
 
 
 // Get list of user who all share public list
-router.post('/public/getuser', (request, response) => {
+router.post('/public/getuser', middleware, (request, response) => {
   User.findOne({
     EMAIL: request.decode.email,
   })

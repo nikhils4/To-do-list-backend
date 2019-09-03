@@ -32,9 +32,6 @@ const port = process.env.PORT || 3000;
 app.use('/', openRoutes);
 app.use('/auth', auth);
 
-// auth check
-app.use(middleware.session);
-
 //secure routes
 app.use('/secure', publiclist);
 app.use('/secure', privatelist);

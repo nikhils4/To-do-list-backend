@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const User = require('../Models/model.js').user;
+const middleware = require('../Helpers/middleware').session;
 
 // Add to private list
-router.post('/private/addlist', (request, response) => {
+router.post('/private/addlist',  middleware,  (request, response) => {
   User.findOneAndUpdate({
     EMAIL: request.decode.email,
   },
@@ -27,7 +28,7 @@ router.post('/private/addlist', (request, response) => {
 });
 
 // Delete from private list
-router.post('/private/dellist', (request, response) => {
+router.post('/private/dellist', middleware,  (request, response) => {
   User.update({
     EMAIL: request.decode.email,
   },
@@ -53,7 +54,7 @@ router.post('/private/dellist', (request, response) => {
 });
 
 // Get the complete private list
-router.post('/private/getlist', (request, response) => {
+router.post('/private/getlist',  middleware,  (request, response) => {
   User.findOne({
     EMAIL: request.decode.email,
   })
