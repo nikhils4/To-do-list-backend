@@ -3,13 +3,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const middleware = require('./Helpers/middleware');
 
 // env config
 require('dotenv').config();
 const app = express();
 
 // requiring local modules
+const middleware = require('./Helpers/middleware');
 const openRoutes = require('./Routes/open');
 const auth = require('./Routes/auth');
 const publiclist = require('./Routes/publiclist');

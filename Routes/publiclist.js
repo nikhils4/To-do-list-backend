@@ -85,9 +85,23 @@ router.post('/public/adduser', (request, response) => {
   { new: true })
     .then((result) => {
       if (result) {
-        response.status(200).json({
-          message: 'Public user list was successfully updated - added',
-        });
+        User.findOneAndUpdate({
+          EMAIL: request.body.list,
+        },
+        { $push: { OTHER_USER_LISTS: request.decode.email} },
+        { new: true })
+        .then((res) => {
+          response.status(200).json({
+            message: 'Public user list was successfully updated - added',
+          });
+        })
+        .catch((err) => {
+          response.status(400).json({
+            message: 'Some error while fetching details hello',
+          });
+        })
+
+
       } else {
         response.status(400).json({
           message: 'Some error while fetching details',
@@ -111,9 +125,21 @@ router.post('/public/deluser', (request, response) => {
 })
     .then((result) => {
       if (result) {
-        response.status(200).json({
-          message: 'Public user list was successfully updated - deleted',
-        });
+        User.findOneAndUpdate({
+          EMAIL: request.body.list,
+        },
+        { $pullAll: { OTHER_USER_LISTS: [request.decode.email]} },
+        { new: true })
+        .then((res) => {
+          response.status(200).json({
+            message: 'Public user list was successfully updated - deleted',
+          });
+        })
+        .catch((err) => {
+          response.status(400).json({
+            message: 'Some error while fetching details hello',
+          });
+        })
       } else {
         response.status(400).json({
           message: 'Some error while fetching details',

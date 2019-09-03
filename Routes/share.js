@@ -33,7 +33,7 @@ router.post('/user/reqlist', (request, response) => {
   })
     .then((result) => {
       if (result) {
-				if (result.PUBLIC_LIST_USER.contains(request.decode.email)){
+				if (result.PUBLIC_LIST_USER.includes(request.decode.email)){
 					response.status(200).json({
 						list: result.PUBLIC_LIST,
 					});
@@ -63,12 +63,12 @@ router.post('/user/reqchange', (request, response) => {
   })
     .then((result) => {
       if (result) {
-				if (result.PUBLIC_LIST_USER.contains(request.decode.email)){
+				if (result.PUBLIC_LIST_USER.includes(request.decode.email)){
 					User.findOne({
 						EMAIL: request.decode.email,
 					})
 					.then((res) => {
-						let email = `<p>Hey ${result.name},</p><p>Thanks for using Keep Notes.</p><p>Here is a request from ${res.name}(${res.email} to update your list</p><p>${request.body.content}</p><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Your friends at Keep Notes</p>`
+						let email = `<p>Hey ${result.NAME},</p><p>Thanks for using Keep Notes.</p><p>Here is a request from ${res.NAME} (${res.EMAIL}) to update your list :-</p><p>${request.body.content}</p><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Your friends at Keep Notes</p>`
 						if (mail(request.body.email, 'Request for Change', email)) {
 							response.status(200).json({
 								message: 'Request was posted successfully',
@@ -102,3 +102,6 @@ router.post('/user/reqchange', (request, response) => {
       });
     });
 })
+
+module.exports = router;
+
