@@ -4,7 +4,7 @@ const mail = require('../Helpers/mailer.js').sendEmail;
 const middleware = require('../Helpers/middleware').session;
 
 // to get the list users who have shared their to-do-list
-router.post('/user/getuser', middleware, (request, response) => {
+router.get('/user/getuser', middleware, (request, response) => {
 	User.findOne({
     EMAIL: request.decode.email,
   })
