@@ -6,7 +6,7 @@ const mail = require('../Helpers/mailer.js').sendEmail;
 
 router.post('/signup', (request, response) => {
   if (!helpers.emailValidate(request.body.email)) {
-    response.status(400).json({
+    response.status(200).json({
       message: 'There was error validating your email id',
     });
   } else {
@@ -18,7 +18,7 @@ router.post('/signup', (request, response) => {
     profile.save((err) => {
       if (err) {
         if (err.code === 11000) {
-          response.status(400).json({
+          response.status(200).json({
             message: 'The given email id is already registered with us',
           });
         } else {
@@ -46,18 +46,24 @@ router.post('/signup', (request, response) => {
 
 
 router.post('/login', (request, response) => {
+  console.log(request.body)
   User.findOne({
     EMAIL: request.body.email,
   }, (err, data) => {
     if (err) {
+      console.log("Hello")
       response.status(500).json({
         message: 'There was error fetching the details',
       });
     } else if (data == null || data === undefined) {
-      response.status(400).json({
+      console.log("Hello onr")
+
+      response.status(200 ).json({
         message: 'No such user exist try signing up first',
       });
     } else {
+      console.log("Hello teo")
+
       if ((helpers.passwordAuth(data.PASSWORD, request.body.password))) {
         const payload = {
           email: request.body.email,
@@ -69,7 +75,7 @@ router.post('/login', (request, response) => {
         });
         return true;
       } else {
-				response.status(400).json({
+				response.status(200).json({
 					message: 'The password entered by the user was wrong',
 				});
 			}
@@ -88,7 +94,7 @@ router.post('/forgetpw', (request, response) => {
         message: 'There was error fetching the details',
       });
     } else if (data == null || data === undefined) {
-      response.status(400).json({
+      response.status(200).json({
         message: 'No such user exist try signing up first',
       });
     } else {
@@ -104,7 +110,7 @@ router.post('/forgetpw', (request, response) => {
               message: 'There was error fetching the details',
             });
           } else if (data == null || data === undefined) {
-            response.status(400).json({
+            response.status(200).json({
               message: 'No such user exist try signing up first',
             });
           } else {
@@ -115,7 +121,7 @@ router.post('/forgetpw', (request, response) => {
           }
         });
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'There was problem resetting your password, try again later',
           email : false
         });

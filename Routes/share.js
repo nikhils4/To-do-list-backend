@@ -14,7 +14,7 @@ router.post('/user/getuser', middleware, (request, response) => {
           list: result.OTHER_USER_LISTS,
         });
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }
@@ -39,12 +39,12 @@ router.post('/user/reqlist', middleware, (request, response) => {
 						list: result.PUBLIC_LIST,
 					});
 				} else {
-					response.status(400).json({
+					response.status(200).json({
 						message: 'You don\'t have proper access rights',
 					});
 				}
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }
@@ -86,12 +86,12 @@ router.post('/user/reqchange', middleware, (request, response) => {
 						});
 					})
 				} else {
-					response.status(400).json({
+					response.status(200).json({
 						message: 'You don\'t have proper access rights',
 					});
 				}
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }

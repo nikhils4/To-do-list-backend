@@ -9,7 +9,6 @@ require('dotenv').config();
 const app = express();
 
 // requiring local modules
-const middleware = require('./Helpers/middleware');
 const openRoutes = require('./Routes/open');
 const auth = require('./Routes/auth');
 const publiclist = require('./Routes/publiclist');

@@ -14,7 +14,7 @@ router.post('/public/getlist', middleware, (request, response) => {
           list: result.PUBLIC_LIST,
         });
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }
@@ -40,7 +40,7 @@ router.post('/public/addlist', middleware, (request, response) => {
           message: 'Public list was successfully updated - added',
         });
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }
@@ -65,7 +65,7 @@ router.post('/public/dellist', middleware, (request, response) => {
           message: 'Public list was successfully updated - deleted',
         });
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }
@@ -105,14 +105,14 @@ router.post('/public/adduser', middleware, (request, response) => {
           }
         })
         .catch((err) => {
-          response.status(400).json({
+          response.status(200).json({
             message: 'Some error while fetching details hello',
           });
         })
 
 
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }
@@ -145,12 +145,12 @@ router.post('/public/deluser', middleware, (request, response) => {
           });
         })
         .catch((err) => {
-          response.status(400).json({
+          response.status(200).json({
             message: 'Some error while fetching details hello',
           });
         })
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }
@@ -175,7 +175,7 @@ router.post('/public/getuser', middleware, (request, response) => {
           list: result.PUBLIC_LIST_USER,
         });
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }

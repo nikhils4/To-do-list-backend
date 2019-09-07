@@ -15,7 +15,7 @@ router.post('/private/addlist',  middleware,  (request, response) => {
           message: 'Private list was successfully updated - added',
         });
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }
@@ -40,7 +40,7 @@ router.post('/private/dellist', middleware,  (request, response) => {
           message: 'Private list was successfully updated - deleted',
         });
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }
@@ -64,7 +64,7 @@ router.post('/private/getlist',  middleware,  (request, response) => {
           list: result.PRIVATE_LIST,
         });
       } else {
-        response.status(400).json({
+        response.status(200).json({
           message: 'Some error while fetching details',
         });
       }
