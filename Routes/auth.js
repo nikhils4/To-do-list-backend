@@ -46,24 +46,18 @@ router.post('/signup', (request, response) => {
 
 
 router.post('/login', (request, response) => {
-  console.log(request.body)
   User.findOne({
     EMAIL: request.body.email,
   }, (err, data) => {
     if (err) {
-      console.log("Hello")
       response.status(500).json({
         message: 'There was error fetching the details',
       });
     } else if (data == null || data === undefined) {
-      console.log("Hello onr")
-
-      response.status(200 ).json({
+      response.status(200).json({
         message: 'No such user exist try signing up first',
       });
     } else {
-      console.log("Hello teo")
-
       if ((helpers.passwordAuth(data.PASSWORD, request.body.password))) {
         const payload = {
           email: request.body.email,
