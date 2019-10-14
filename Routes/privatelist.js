@@ -77,7 +77,7 @@ router.post('/private/dellist', middleware,  (request, response) => {
 });
 
 // Get the complete private list
-router.post('/private/getlist',  middleware,  (request, response) => {
+router.get('/private/getlist',  middleware,  (request, response) => {
   User.findOne({
     EMAIL: request.decode.email,
   })
