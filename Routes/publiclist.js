@@ -188,4 +188,29 @@ router.post('/public/getuser', middleware, (request, response) => {
     });
 })
 
+// Get the complete public list
+router.post('/public/getlistothers', middleware, (request, response) => {
+  User.findOne({
+    EMAIL: request.body.email,
+  })
+    .then((result) => {
+      if (result) {
+        response.status(200).json({
+          list: result.PUBLIC_LIST,
+        });
+      } else {
+        response.status(200).json({
+          message: 'Some error while fetching details',
+        });
+      }
+    })
+    .catch((err) => {
+			console.log(err)
+      response.status(500).json({
+        message: 'Internal Server Error',
+      });
+    });
+})
+
+
 module.exports = router;
