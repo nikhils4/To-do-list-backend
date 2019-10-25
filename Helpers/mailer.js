@@ -19,8 +19,10 @@ async function sendEmail(to, subject, text) {
 	
 	await transporter.sendMail(mailOptions, function(error, info){
 		if (error) {
+			console.log(error)
 			return false
 		} else {
+			console.log("Success")
 			return true
 		}
 	});
