@@ -92,7 +92,7 @@ router.post('/forgetpw', (request, response) => {
         message: 'No such user exist try signing up first',
       });
     } else {
-      let email = `<p>Hey ${data.NAME},</p><p>Thanks for using Keep Notes.</p><p>Your new password is ${password}.</p><p>Login with the new password and update your password.</p><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Your friends at Keep Notes</p>`
+      let email = `<p>Hey ${data.NAME},</p><p>Thanks for using Keep Notes.</p><p>Your new password is ${password}.</p><p>Login with the new password.</p><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Your friends at Keep Notes</p>`
       if(mail(request.body.email, 'Forgot Password', email)){
         User.findOneAndUpdate({
           EMAIL: request.body.email,
