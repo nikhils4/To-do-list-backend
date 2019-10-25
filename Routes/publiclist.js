@@ -93,7 +93,7 @@ router.post('/public/adduser', middleware, (request, response) => {
         { $push: { OTHER_USER_LISTS: request.decode.email} },
         { new: true })
         .then((res) => {
-          let email = `<p>Hey ${res.NAME},</p><p>Thanks for using Keep Notes.</p><p>${result.NAME} (${result.EMAIL}) has invited you to view and request for change on their public list :-</p><p>Login to view what they have to share with you.</p><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Your friends at Keep Notes</p>`
+          let email = `<p>Hey ${res.NAME},</p><p>Thanks for using Keep Notes.</p><p>${result.NAME} (${result.EMAIL}) has invited you to view and request for change on their public list :-</p><p>Login to view what they have to share with you.</p><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Team Keep Notes</p>`
           if (mail(request.body.list, 'Public list invite', email)) {
             response.status(200).json({
               message: 'Public user list was successfully updated - added',
@@ -106,7 +106,7 @@ router.post('/public/adduser', middleware, (request, response) => {
         })
         .catch((err) => {
           response.status(200).json({
-            message: 'Some error while fetching details hello',
+            message: 'Some error while fetching details',
           });
         })
 

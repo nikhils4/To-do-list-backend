@@ -27,7 +27,7 @@ router.post('/signup', (request, response) => {
           });
         }
       } else {
-				let email = `<p>Hey ${request.body.name},</p><p>Welcome to Keep Notes, enjoy using it.</p><a href="#"><button style="border-radius : 5px; padding : 5px; background : blue; color : white; outline : none">Continue to login</button></a><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Your friends at Keep Notes</p>`
+				let email = `<p>Hey ${request.body.name},</p><p>Welcome to Keep Notes, enjoy using it.</p><a href="https://keepnotes.netlify.com/login.html"><button style="border-radius : 5px; padding : 10px; background : blue; color : white; outline : none; font-size : 15px">Continue to login</button></a><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Team Keep Notes</p>`
         if(mail(request.body.email, 'Welcome to Keep Notes', email)){
 					response.status(200).json({
 						message: 'You were successfully signed up',
@@ -92,7 +92,7 @@ router.post('/forgetpw', (request, response) => {
         message: 'No such user exist try signing up first',
       });
     } else {
-      let email = `<p>Hey ${data.NAME},</p><p>Thanks for using Keep Notes.</p><p>Your new password is ${password}.</p><p>Login with the new password.</p><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Your friends at Keep Notes</p>`
+      let email = `<p>Hey ${data.NAME},</p><p>Thanks for using Keep Notes.</p><p>Your new password is ${password}.</p><p>Login with the new password.</p><p>For any assistance reach us out at <a href="mailto:snapnab.dev@gmail.com" style="text-decoration: none">support</a>.<p>Thanks<br>Team Keep Notes</p>`
       if(mail(request.body.email, 'Forgot Password', email)){
         User.findOneAndUpdate({
           EMAIL: request.body.email,
