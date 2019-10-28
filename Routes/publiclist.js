@@ -54,19 +54,36 @@ router.post('/public/addlist', middleware, (request, response) => {
 
 // Delete from public list
 router.post('/public/dellist', middleware, (request, response) => {
-  User.update({
-    EMAIL: request.decode.email,
-  },
-  { $pullAll: { PUBLIC_LIST: [request.body.remove] } 
-})
+  User.findOne({
+    EMAIL: request.body.remove,
+  })
     .then((result) => {
       if (result) {
-        response.status(200).json({
-          message: 'Public list was successfully updated - deleted',
-        });
+        User.update({
+          EMAIL: request.decode.email,
+        },
+        { $pullAll: { PUBLIC_LIST: [request.body.remove] } 
+      })
+          .then((result) => {
+            if (result) {
+              response.status(200).json({
+                message: 'Public list was successfully updated - deleted',
+              });
+            } else {
+              response.status(200).json({
+                message: 'User does not exist',
+              });
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+            response.status(500).json({
+              message: 'Internal Server Error',
+            });
+          });
       } else {
         response.status(200).json({
-          message: 'Some error while fetching details',
+          message: 'User does not exist',
         });
       }
     })
@@ -76,6 +93,9 @@ router.post('/public/dellist', middleware, (request, response) => {
         message: 'Internal Server Error',
       });
     });
+
+  
+
 });
 
 // Add user from list of user with whom the list has been shared
@@ -127,6 +147,7 @@ router.post('/public/adduser', middleware, (request, response) => {
 
 // Delete user from list of user with whom the list has been shared
 router.post('/public/deluser', middleware, (request, response) => {
+  
   User.update({
     EMAIL: request.decode.email,
   },
