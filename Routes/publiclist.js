@@ -185,7 +185,7 @@ router.post('/public/deluser', middleware, (request, response) => {
 
 
 // Get list of user who all share public list
-router.post('/public/getuser', middleware, (request, response) => {
+router.get('/public/getuser', middleware, (request, response) => {
   User.findOne({
     EMAIL: request.decode.email,
   })
